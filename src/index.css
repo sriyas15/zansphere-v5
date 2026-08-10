@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+/* ============================================
+   WARM FUTURISM DESIGN SYSTEM
+   Zansphere — Premium Tech Light Theme
+   ============================================ */
+
+/* ============================================
+   CSS Custom Properties (Design Tokens)
+   ============================================ */
+:root {
+  /* Backgrounds */
+  --bg-primary: #fffdf7;
+  --bg-secondary: #fef9ef;
+  --bg-elevated: #ffffff;
+  --bg-deep: #1e1b4b;
+  --bg-deep-lighter: #312e81;
+
+  /* Accent Colors */
+  --accent-orange: #f97316;
+  --accent-amber: #f59e0b;
+  --accent-indigo: #4f46e5;
+  --accent-violet: #7c3aed;
+
+  /* Text Colors */
+  --text-primary: #1e1b4b;
+  --text-secondary: #64748b;
+  --text-heading: #0f0a2e;
+  --text-muted: #94a3b8;
+
+  /* Glass Effects */
+  --glass-border: rgba(79, 70, 229, 0.1);
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-bg-strong: rgba(255, 255, 255, 0.85);
+
+  /* Shadows */
+  --warm-shadow: 0 4px 30px rgba(249, 115, 22, 0.08);
+  --warm-shadow-lg: 0 20px 60px rgba(249, 115, 22, 0.12);
+  --glow-orange: 0 0 20px rgba(249, 115, 22, 0.3);
+  --glow-indigo: 0 0 20px rgba(79, 70, 229, 0.2);
+  --elevated-shadow: 0 8px 32px rgba(15, 10, 46, 0.08);
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #f97316, #f59e0b);
+  --gradient-heading: linear-gradient(135deg, #4f46e5, #7c3aed);
+  --gradient-hero: linear-gradient(135deg, #1e1b4b, #312e81, #4338ca);
+  --gradient-warm: linear-gradient(135deg, #fef3c7, #fffdf7, #fef9ef);
+  --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(255,255,255,0.4));
+
+  /* Typography */
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+/* Selection */
+::selection {
+  background-color: rgba(249, 115, 22, 0.2);
+  color: var(--text-heading);
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+
+/* Font families */
+.font-heading {
+  font-family: var(--font-heading);
+}
+.font-body {
+  font-family: var(--font-body);
+}
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Gradient text */
+.gradient-text-orange {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-text-indigo {
+  background: var(--gradient-heading);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glass card */
+.glass-card {
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--elevated-shadow);
+}
+.glass-card-light {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Glow effects */
+.glow-orange {
+  box-shadow: var(--glow-orange);
+}
+.glow-indigo {
+  box-shadow: var(--glow-indigo);
+}
+.hover-glow-orange {
+  transition: box-shadow 0.3s ease;
+}
+.hover-glow-orange:hover {
+  box-shadow: var(--glow-orange);
+}
+
+/* Dot grid background */
+.dot-grid-bg {
+  background-image: radial-gradient(circle, rgba(79, 70, 229, 0.07) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.dot-grid-bg-light {
+  background-image: radial-gradient(circle, rgba(79, 70, 229, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Line grid background */
+.line-grid-bg {
+  background-image: 
+    linear-gradient(to right, rgba(79, 70, 229, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(79, 70, 229, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* ============================================
+   Keyframe Animations
+   ============================================ */
+
+/* Glitch effect */
+@keyframes glitch {
+  0% { text-shadow: 2px 0 #f97316, -2px 0 #4f46e5; }
+  20% { text-shadow: -2px 0 #f97316, 2px 0 #4f46e5; }
+  40% { text-shadow: 2px 0 #f97316, -2px 0 #4f46e5; transform: translate(0); }
+  41% { text-shadow: 2px 2px #f97316, -2px -2px #4f46e5; transform: translate(-2px, 1px); }
+  42% { text-shadow: 2px 0 #f97316, -2px 0 #4f46e5; transform: translate(0); }
+  60% { text-shadow: -1px 0 #f97316, 1px 0 #4f46e5; }
+  80% { text-shadow: 1px 0 #f97316, -1px 0 #4f46e5; }
+  100% { text-shadow: 2px 0 #f97316, -2px 0 #4f46e5; }
+}
+.animate-glitch {
+  animation: glitch 4s ease-in-out infinite;
+}
+
+/* Shimmer / golden sweep */
+@keyframes shimmer {
+  0% { transform: translateX(-150%) skewX(-12deg); }
+  100% { transform: translateX(150%) skewX(-12deg); }
+}
+.animate-shimmer {
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* Float animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Grid flow */
+@keyframes grid-flow {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 48px; }
+}
+.animate-grid-flow {
+  animation: grid-flow 20s linear infinite;
+}
+
+/* Glow pulse */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 10px rgba(249, 115, 22, 0.2); }
+  50% { box-shadow: 0 0 30px rgba(249, 115, 22, 0.4); }
+}
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* Scan line */
+@keyframes scan-line {
+  0% { top: -10%; }
+  100% { top: 110%; }
+}
+
+/* Marquee scroll */
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Gradient shift */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animate-gradient-shift {
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease infinite;
+}
+
+/* ============================================
+   Scrollbar Styling
+   ============================================ */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--accent-orange), var(--accent-indigo));
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, var(--accent-amber), var(--accent-violet));
+}
