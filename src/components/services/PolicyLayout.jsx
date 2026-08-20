@@ -1,22 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import logo from '../../images/zanSphereLogo.svg'; // Adjusted path
 
 const PolicyLayout = ({ pageTitle, children }) => {
+  const navigate = useNavigate();
+
+  const handleBack = (e) => {
+    e.preventDefault();
+    if (window.history.state && window.history.state.idx > 0) {
+      navigate(-1);
+    } else {
+      navigate('/');
+    }
+  };
   return (
     <div className="bg-white">
       {/* Header - Simple version */}
       <header className="w-full bg-white shadow-sm py-4">
         <div className="container mx-auto px-4 flex items-center justify-between">
-          <a href="/">
+          <a href="/" onClick={handleBack}>
             <img
               src={logo}
               alt="ZanSphere Logo"
               className="w-[180px] h-[65px] object-cover cursor-pointer"
             />
           </a>
-          <a href="/" className="px-6 py-2 bg-transparent border border-black text-black hover:bg-black hover:text-white transition duration-300 rounded-full">
+          <a href="/" onClick={handleBack} className="px-6 py-2 bg-transparent border border-black text-black hover:bg-black hover:text-white transition duration-300 rounded-full">
             Back to Home
           </a>
         </div>

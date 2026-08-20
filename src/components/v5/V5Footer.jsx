@@ -1,11 +1,12 @@
 import React from 'react';
+import { Linkedin, Github } from 'lucide-react';
 import logo from '../../images/zanSphereLogo.png';
 
 export default function V5Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-white border-t border-gray-100 py-16 md:py-24">
+    <footer id="footer" className="bg-slate-50 border-t border-slate-200 py-16 md:py-24">
       <div className="max-w-[1200px] mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
           
@@ -52,9 +53,12 @@ export default function V5Footer() {
             © {currentYear} Zansphere. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <a href="#" className="text-xs text-gray-400 hover:text-gray-900 uppercase tracking-wider font-bold transition-colors">Twitter</a>
-            <a href="#" className="text-xs text-gray-400 hover:text-gray-900 uppercase tracking-wider font-bold transition-colors">LinkedIn</a>
-            <a href="#" className="text-xs text-gray-400 hover:text-gray-900 uppercase tracking-wider font-bold transition-colors">GitHub</a>
+            <a href="https://www.linkedin.com/company/zansphere" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-gray-400 hover:text-gray-900 transition-colors">
+              <Linkedin size={20} />
+            </a>
+            <a href="https://github.com/Zansphere" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-gray-400 hover:text-gray-900 transition-colors">
+              <Github size={20} />
+            </a>
           </div>
         </div>
       </div>

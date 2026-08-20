@@ -67,23 +67,23 @@ export default function V5Header() {
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <button
+            <a
               key={link.name}
-              onClick={() => handleScroll(link.target)}
+              href={`#${link.target}`}
               className="text-xs font-semibold tracking-wider uppercase text-gray-500 hover:text-gray-900 transition-colors"
             >
               {link.name}
-            </button>
+            </a>
           ))}
         </nav>
 
         {/* Contact CTA */}
-        <button
-          onClick={() => handleScroll('contact')}
+        <a
+          href="#contact"
           className="hidden md:flex items-center px-6 py-2.5 bg-gray-900 hover:bg-gray-800 text-white rounded-full text-xs font-bold uppercase tracking-wider transition-colors shadow-sm"
         >
           Contact Us
-        </button>
+        </a>
 
         {/* Mobile Menu Button (Minimal) */}
         <button className="md:hidden flex flex-col gap-1.5 p-2">

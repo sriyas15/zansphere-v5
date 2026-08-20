@@ -69,12 +69,17 @@ export default function V5Contact() {
             viewport={{ once: true }}
             className="bg-white/60 backdrop-blur-xl p-8 md:p-12 rounded-[2.5rem] border border-white shadow-[0_8px_40px_rgba(0,0,0,0.04)]"
           >
-            <form className="flex flex-col gap-6" onSubmit={(e) => e.preventDefault()}>
+            <form action="https://formsubmit.co/contact@zansphere.com" method="POST" className="flex flex-col gap-6">
+              <input type="hidden" name="_subject" value="New Contact Form Submission - Zansphere" />
+              <input type="hidden" name="_captcha" value="false" />
+              
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="flex flex-col gap-2">
                   <label className="text-xs font-bold text-gray-400 uppercase tracking-wider pl-4">First Name</label>
                   <input 
                     type="text" 
+                    name="first_name"
+                    required
                     placeholder="John" 
                     className="w-full px-6 py-4 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all shadow-sm text-gray-900 placeholder:text-gray-300"
                   />
@@ -83,6 +88,8 @@ export default function V5Contact() {
                   <label className="text-xs font-bold text-gray-400 uppercase tracking-wider pl-4">Last Name</label>
                   <input 
                     type="text" 
+                    name="last_name"
+                    required
                     placeholder="Doe" 
                     className="w-full px-6 py-4 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all shadow-sm text-gray-900 placeholder:text-gray-300"
                   />
@@ -93,6 +100,8 @@ export default function V5Contact() {
                 <label className="text-xs font-bold text-gray-400 uppercase tracking-wider pl-4">Email Address</label>
                 <input 
                   type="email" 
+                  name="email"
+                  required
                   placeholder="john@company.com" 
                   className="w-full px-6 py-4 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all shadow-sm text-gray-900 placeholder:text-gray-300"
                 />
@@ -101,13 +110,15 @@ export default function V5Contact() {
               <div className="flex flex-col gap-2">
                 <label className="text-xs font-bold text-gray-400 uppercase tracking-wider pl-4">Message</label>
                 <textarea 
+                  name="message"
+                  required
                   rows="4" 
                   placeholder="Tell us about your project..." 
                   className="w-full px-6 py-4 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all shadow-sm text-gray-900 placeholder:text-gray-300 resize-none"
                 ></textarea>
               </div>
               
-              <button className="w-full mt-4 py-4 bg-gray-900 hover:bg-gray-800 text-white rounded-2xl text-sm font-bold uppercase tracking-wider transition-colors shadow-md">
+              <button type="submit" className="w-full mt-4 py-4 bg-gray-900 hover:bg-gray-800 text-white rounded-2xl text-sm font-bold uppercase tracking-wider transition-colors shadow-md">
                 Send Message
               </button>
             </form>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import V5Loader from './V5Loader';
 import V5Header from './V5Header';
@@ -16,7 +16,32 @@ import V5Footer from './V5Footer';
 import V5Cursor from './V5Cursor';
 
 export default function V5Land() {
-  const [loadingComplete, setLoadingComplete] = useState(false);
+    useEffect(() => {
+    const handleBeforeUnload = () => {
+      sessionStorage.setItem('v5ScrollPos', window.scrollY);
+    };
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    
+    // Restore on mount
+    const savedScroll = sessionStorage.getItem('v5ScrollPos');
+    if (savedScroll) {
+      setTimeout(() => {
+        window.scrollTo(0, parseInt(savedScroll, 10));
+      }, 200);
+      sessionStorage.removeItem('v5ScrollPos');
+    }
+    
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, []);
+
+  const [loadingComplete, setLoadingComplete] = useState(() => {
+    return sessionStorage.getItem('v5LoaderComplete') === 'true';
+  });
+
+  const handleComplete = () => {
+    setLoadingComplete(true);
+    sessionStorage.setItem('v5LoaderComplete', 'true');
+  };
 
   return (
     <div className="min-h-screen bg-[#fafafa]" style={{ fontFamily: "'Inter', sans-serif" }}>
@@ -36,7 +61,7 @@ export default function V5Land() {
 
       <V5Cursor />
 
-      <V5Loader onComplete={() => setLoadingComplete(true)} />
+      {!loadingComplete && <V5Loader onComplete={handleComplete} />}
 
       {/* Render content only after loading starts, but keep it in DOM for SEO/refs */}
       <div style={{ opacity: loadingComplete ? 1 : 0, transition: 'opacity 1s ease' }}>
