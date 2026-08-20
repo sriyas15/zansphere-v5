@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import logo from '../../images/zanSphereLogo.png';
 
 export default function V5Header() {
   const { scrollY } = useScroll();
   const [isPill, setIsPill] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     return scrollY.onChange((latest) => {
@@ -86,11 +87,46 @@ export default function V5Header() {
         </a>
 
         {/* Mobile Menu Button (Minimal) */}
-        <button className="md:hidden flex flex-col gap-1.5 p-2">
-          <div className="w-6 h-0.5 bg-gray-900" />
-          <div className="w-4 h-0.5 bg-gray-900 ml-auto" />
+        <button 
+          className="md:hidden flex flex-col gap-1.5 p-2"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          <div className={`h-0.5 bg-gray-900 transition-all ${isMobileMenuOpen ? 'w-6 rotate-45 translate-y-2' : 'w-6'}`} />
+          <div className={`h-0.5 bg-gray-900 transition-all ${isMobileMenuOpen ? 'w-6 -rotate-45' : 'w-4 ml-auto'}`} />
         </button>
       </motion.div>
+
+      {/* Mobile Menu Dropdown */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="fixed top-24 left-6 right-6 bg-white/95 backdrop-blur-2xl border border-gray-100 rounded-3xl p-6 shadow-2xl flex flex-col gap-6 md:hidden pointer-events-auto"
+          >
+            <div className="flex flex-col gap-4">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={`#${link.target}`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-sm font-bold tracking-wider uppercase text-gray-700 hover:text-gray-900 transition-colors border-b border-gray-100 pb-3"
+                >
+                  {link.name}
+                </a>
+              ))}
+            </div>
+            <a
+              href="#contact"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center justify-center w-full py-4 bg-gray-900 hover:bg-gray-800 text-white rounded-2xl text-xs font-bold uppercase tracking-wider transition-colors shadow-lg"
+            >
+              Contact Us
+            </a>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
