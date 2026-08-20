@@ -74,8 +74,9 @@ const services = [
 export default function V5Services() {
   const containerRef = useRef(null);
   const numCards = services.length;
-  // Total scroll height to allow (numCards) sections of scrolling
-  const scrollHeight = `${numCards * 100}vh`;
+  const numTransitions = Math.max(1, numCards - 1);
+  // Total scroll height to allow transitions
+  const scrollHeight = `${numTransitions * 100}vh`;
 
   // Track scroll progress of the entire section
   const { scrollYProgress } = useScroll({
@@ -107,15 +108,15 @@ export default function V5Services() {
         <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
           {services.map((service, i) => {
             // Each card takes 1 fraction of the total scrollable distance to slide up
-            const startReveal = i / numCards;
-            const endReveal = (i + 1) / numCards;
+            const startReveal = i / numTransitions;
+            const endReveal = (i + 1) / numTransitions;
 
             // The card slides UP (-120%) to reveal the next card
             const y = useTransform(smoothProgress, [startReveal, endReveal], ['0%', '-120%']);
 
             // The next card scales up slightly as it gets revealed
-            const scaleStart = (i - 1) / numCards;
-            const scaleEnd = i / numCards;
+            const scaleStart = (i - 1) / numTransitions;
+            const scaleEnd = i / numTransitions;
             const scale = useTransform(smoothProgress, [scaleStart, scaleEnd], [i === 0 ? 1 : 0.9, 1]);
 
             // Slight fade in as it scales
