@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 export default function V5Contact() {
+  const [message, setMessage] = useState('');
+  const MAX_CHARS = 1000;
+
   return (
     <section id="contact" className="py-24 md:py-32 bg-[#fafafa] relative overflow-hidden">
       
@@ -80,6 +83,7 @@ export default function V5Contact() {
                     type="text" 
                     name="first_name"
                     required
+                    maxLength={50}
                     placeholder="John" 
                     className="w-full px-6 py-4 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all shadow-sm text-gray-900 placeholder:text-gray-300"
                   />
@@ -90,6 +94,7 @@ export default function V5Contact() {
                     type="text" 
                     name="last_name"
                     required
+                    maxLength={50}
                     placeholder="Doe" 
                     className="w-full px-6 py-4 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all shadow-sm text-gray-900 placeholder:text-gray-300"
                   />
@@ -102,17 +107,26 @@ export default function V5Contact() {
                   type="email" 
                   name="email"
                   required
+                  maxLength={100}
                   placeholder="john@company.com" 
                   className="w-full px-6 py-4 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all shadow-sm text-gray-900 placeholder:text-gray-300"
                 />
               </div>
               
               <div className="flex flex-col gap-2">
-                <label className="text-xs font-bold text-gray-400 uppercase tracking-wider pl-4">Message</label>
+                <div className="flex justify-between items-end pl-4 pr-4">
+                  <label className="text-xs font-bold text-gray-400 uppercase tracking-wider">Message</label>
+                  <span className={`text-xs ${message.length >= MAX_CHARS ? 'text-red-500 font-bold' : 'text-gray-400'}`}>
+                    {message.length}/{MAX_CHARS}
+                  </span>
+                </div>
                 <textarea 
                   name="message"
                   required
                   rows="4" 
+                  maxLength={MAX_CHARS}
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
                   placeholder="Tell us about your project..." 
                   className="w-full px-6 py-4 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all shadow-sm text-gray-900 placeholder:text-gray-300 resize-none"
                 ></textarea>
