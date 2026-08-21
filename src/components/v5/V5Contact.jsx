@@ -2,8 +2,45 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 export default function V5Contact() {
-  const [message, setMessage] = useState('');
+  const [formData, setFormData] = useState({ first_name: '', last_name: '', email: '', message: '', _honey: '' });
+  const [status, setStatus] = useState('idle'); // idle, loading, success, error
   const MAX_CHARS = 1000;
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus('loading');
+    
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/contact@zansphere.com', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `New Contact Form Submission - Zansphere`,
+          ...formData
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setStatus('success');
+        setFormData({ first_name: '', last_name: '', email: '', message: '' });
+        setTimeout(() => setStatus('idle'), 5000);
+      } else {
+        setStatus('error');
+        setTimeout(() => setStatus('idle'), 5000);
+      }
+    } catch {
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 5000);
+    }
+  };
 
   return (
     <section id="contact" className="py-24 md:py-32 bg-[#fafafa] relative overflow-hidden">
@@ -70,18 +107,28 @@ export default function V5Contact() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-white/60 backdrop-blur-xl p-8 md:p-12 rounded-[2.5rem] border border-white shadow-[0_8px_40px_rgba(0,0,0,0.04)]"
+            className="bg-white/60 backdrop-blur-xl p-8 md:p-12 rounded-[2.5rem] border border-white shadow-[0_8px_40px_rgba(0,0,0,0.04)] relative"
           >
-            <form action="https://formsubmit.co/contact@zansphere.com" method="POST" className="flex flex-col gap-6">
-              <input type="hidden" name="_subject" value="New Contact Form Submission - Zansphere" />
-              <input type="hidden" name="_captcha" value="false" />
-              
+            <form onSubmit={handleSubmit} className="flex flex-col gap-6 relative">
+              {/* Honeypot Spam Protection */}
+              <input 
+                type="text" 
+                name="_honey" 
+                value={formData._honey} 
+                onChange={handleInputChange} 
+                style={{ display: 'none' }} 
+                tabIndex="-1"
+                autoComplete="off"
+              />
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="flex flex-col gap-2">
                   <label className="text-xs font-bold text-gray-400 uppercase tracking-wider pl-4">First Name</label>
                   <input 
                     type="text" 
                     name="first_name"
+                    value={formData.first_name}
+                    onChange={handleInputChange}
                     required
                     maxLength={50}
                     placeholder="John" 
@@ -93,6 +140,8 @@ export default function V5Contact() {
                   <input 
                     type="text" 
                     name="last_name"
+                    value={formData.last_name}
+                    onChange={handleInputChange}
                     required
                     maxLength={50}
                     placeholder="Doe" 
@@ -106,6 +155,8 @@ export default function V5Contact() {
                 <input 
                   type="email" 
                   name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
                   required
                   maxLength={100}
                   placeholder="john@company.com" 
@@ -116,8 +167,8 @@ export default function V5Contact() {
               <div className="flex flex-col gap-2">
                 <div className="flex justify-between items-end pl-4 pr-4">
                   <label className="text-xs font-bold text-gray-400 uppercase tracking-wider">Message</label>
-                  <span className={`text-xs ${message.length >= MAX_CHARS ? 'text-red-500 font-bold' : 'text-gray-400'}`}>
-                    {message.length}/{MAX_CHARS}
+                  <span className={`text-xs ${formData.message.length >= MAX_CHARS ? 'text-red-500 font-bold' : 'text-gray-400'}`}>
+                    {formData.message.length}/{MAX_CHARS}
                   </span>
                 </div>
                 <textarea 
@@ -125,16 +176,38 @@ export default function V5Contact() {
                   required
                   rows="4" 
                   maxLength={MAX_CHARS}
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
+                  value={formData.message}
+                  onChange={handleInputChange}
                   placeholder="Tell us about your project..." 
                   className="w-full px-6 py-4 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all shadow-sm text-gray-900 placeholder:text-gray-300 resize-none"
                 ></textarea>
               </div>
               
-              <button type="submit" className="w-full mt-4 py-4 bg-gray-900 hover:bg-gray-800 text-white rounded-2xl text-sm font-bold uppercase tracking-wider transition-colors shadow-md">
-                Send Message
+              <button 
+                type="submit" 
+                disabled={status === 'loading'}
+                className="w-full mt-4 py-4 bg-gray-900 hover:bg-gray-800 disabled:bg-gray-400 text-white rounded-2xl text-sm font-bold uppercase tracking-wider transition-colors shadow-md flex items-center justify-center gap-2"
+              >
+                {status === 'loading' ? 'Sending...' : 'Send Message'}
               </button>
+
+              {status === 'success' && (
+                <div className="absolute inset-0 bg-white/90 backdrop-blur-sm rounded-[2.5rem] flex flex-col items-center justify-center p-8 text-center z-10">
+                  <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4">
+                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                  </div>
+                  <h4 className="text-xl font-bold text-gray-900 mb-2">Message Sent!</h4>
+                  <p className="text-gray-600">Thank you for reaching out. We will get back to you shortly.</p>
+                </div>
+              )}
+
+              {status === 'error' && (
+                <div className="mt-4 p-4 bg-red-50 text-red-600 rounded-2xl text-sm font-medium text-center">
+                  Oops! Something went wrong. Please try again.
+                </div>
+              )}
             </form>
           </motion.div>
         </div>
