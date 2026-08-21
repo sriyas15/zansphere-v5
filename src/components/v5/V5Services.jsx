@@ -1,12 +1,12 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import software from '../../images/software.jpg';
-import app from '../../images/app.jpg';
-import web from '../../images/web.jpg';
-import cloud from '../../images/cloud.jpg';
-import qa from '../../images/qa.jpg';
-import ai from '../../images/ai.jpg';
+import software from '../../images/custom-software.png';
+import app from '../../images/mobile-apps.png';
+import web from '../../images/web-developement.png';
+import cloud from '../../images/cloud-devops.png';
+import qa from '../../images/qa-automation.png';
+import ai from '../../images/ai-and-ml.png';
 
 const services = [
   {
@@ -135,13 +135,13 @@ export default function V5Services() {
                 }}
               >
                 {/* Left side: Image */}
-                <div className="w-full md:w-5/12 h-64 md:h-full relative overflow-hidden">
+                <div className="w-full md:w-5/12 h-64 md:h-full relative overflow-hidden bg-gray-50 flex items-center justify-center">
                   <img
                     src={service.image}
                     alt={service.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-fill relative z-0"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent z-0 pointer-events-none" />
                   <div className="absolute bottom-8 left-8 text-white z-10">
                     <div className="text-sm font-mono tracking-widest uppercase mb-2 opacity-80">{service.id}</div>
                     <h3 className="text-3xl md:text-4xl font-bold tracking-tight" style={{ fontFamily: "'Inter', sans-serif" }}>
