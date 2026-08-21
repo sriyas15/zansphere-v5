@@ -8,10 +8,10 @@ export const PrivacyPolicy = () => {
   return (
     <PolicyLayout pageTitle="Privacy Policy">
       {/* Actual content of the Privacy Policy */}
-      <h2 className="text-2xl font-semibold mt-6 mb-4">Privacy Policy for ZanSphere</h2>
+      <h2 className="text-2xl font-semibold mt-6 mb-4">Privacy Policy for Zansphere</h2>
       <p className="text-gray-600 mb-4"><strong>Last Updated: May 07, 2025</strong></p>
       
-      <p>ZanSphere Private Limited ("ZanSphere," "we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website www.zansphere.com or use our services.</p>
+      <p>Zansphere Private Limited ("Zansphere," "we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website www.zansphere.com or use our services.</p>
       
       <h3 className="text-xl font-semibold mt-6 mb-3">Information We Collect</h3>
       
@@ -100,16 +100,16 @@ export const TermsOfService = () => {
   return (
     <PolicyLayout pageTitle="Terms of Service">
       {/* Actual content of the Terms of Service */}
-      <h2 className="text-2xl font-semibold mt-6 mb-4">Terms of Service for ZanSphere</h2>
+      <h2 className="text-2xl font-semibold mt-6 mb-4">Terms of Service for Zansphere</h2>
       <p className="text-gray-600 mb-4"><strong>Last Updated: May 07, 2025</strong></p>
       
-      <p>Please read these Terms of Service ("Terms") carefully before using the website and services offered by ZanSphere Private Limited ("ZanSphere," "we," "our," or "us").</p>
+      <p>Please read these Terms of Service ("Terms") carefully before using the website and services offered by Zansphere Private Limited ("Zansphere," "we," "our," or "us").</p>
       
       <h3 className="text-xl font-semibold mt-6 mb-3">1. Acceptance of Terms</h3>
       <p>By accessing or using our website (www.zansphere.com) and services, you agree to be bound by these Terms. If you do not agree to these Terms, you must not access or use our services.</p>
       
       <h3 className="text-xl font-semibold mt-6 mb-3">2. Description of Services</h3>
-      <p>ZanSphere provides software development, quality assurance, DevOps, security testing, and related technical services as described on our website.</p>
+      <p>Zansphere provides software development, quality assurance, DevOps, security testing, and related technical services as described on our website.</p>
       
       <h3 className="text-xl font-semibold mt-6 mb-3">3. User Accounts</h3>
       <p>Some services may require you to create an account. You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account.</p>
@@ -126,7 +126,7 @@ export const TermsOfService = () => {
       <h3 className="text-xl font-semibold mt-6 mb-3">5. Intellectual Property Rights</h3>
       
       <h4 className="text-lg font-medium mt-4 mb-2">Our Intellectual Property</h4>
-      <p>All content, features, and functionality on our website, including text, graphics, logos, images, and software, are owned by ZanSphere or our licensors and are protected by copyright, trademark, and other intellectual property laws.</p>
+      <p>All content, features, and functionality on our website, including text, graphics, logos, images, and software, are owned by Zansphere or our licensors and are protected by copyright, trademark, and other intellectual property laws.</p>
       
       <h4 className="text-lg font-medium mt-4 mb-2">Your Content</h4>
       <p>You retain ownership of any content you provide to us. By submitting content, you grant us a non-exclusive, worldwide, royalty-free license to use, reproduce, modify, and display such content in connection with providing our services.</p>
@@ -144,13 +144,13 @@ export const TermsOfService = () => {
       </ul>
       
       <h3 className="text-xl font-semibold mt-6 mb-3">8. Limitation of Liability</h3>
-      <p>To the maximum extent permitted by law, ZanSphere shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use or inability to use our services.</p>
+      <p>To the maximum extent permitted by law, Zansphere shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use or inability to use our services.</p>
       
       <h3 className="text-xl font-semibold mt-6 mb-3">9. Warranties and Disclaimers</h3>
       <p>Our services are provided "as is" and "as available" without warranties of any kind, either express or implied, including, but not limited to, implied warranties of merchantability, fitness for a particular purpose, or non-infringement.</p>
       
       <h3 className="text-xl font-semibold mt-6 mb-3">10. Indemnification</h3>
-      <p>You agree to indemnify and hold harmless ZanSphere, its affiliates, officers, directors, employees, and agents from any claims, liabilities, damages, losses, costs, or expenses arising from your use of our services or violation of these Terms.</p>
+      <p>You agree to indemnify and hold harmless Zansphere, its affiliates, officers, directors, employees, and agents from any claims, liabilities, damages, losses, costs, or expenses arising from your use of our services or violation of these Terms.</p>
       
       <h3 className="text-xl font-semibold mt-6 mb-3">11. Termination</h3>
       <p>We may terminate or suspend your access to our services immediately, without prior notice or liability, for any reason.</p>
@@ -178,10 +178,10 @@ export const CookiePolicy = () => {
   return (
     <PolicyLayout pageTitle="Cookie Policy">
       {/* Actual content of the Cookie Policy */}
-      <h2 className="text-2xl font-semibold mt-6 mb-4">Cookie Policy for ZanSphere</h2>
+      <h2 className="text-2xl font-semibold mt-6 mb-4">Cookie Policy for Zansphere</h2>
       <p className="text-gray-600 mb-4"><strong>Last Updated: May 07, 2025</strong></p>
       
-      <p>This Cookie Policy explains how ZanSphere Private Limited ("ZanSphere," "we," "our," or "us") uses cookies and similar technologies on our website www.zansphere.com.</p>
+      <p>This Cookie Policy explains how Zansphere Private Limited ("Zansphere," "we," "our," or "us") uses cookies and similar technologies on our website www.zansphere.com.</p>
       
       <h3 className="text-xl font-semibold mt-6 mb-3">What Are Cookies?</h3>
       <p>Cookies are small text files that are stored on your device when you visit a website. They are widely used to make websites work more efficiently and provide information to website owners.</p>

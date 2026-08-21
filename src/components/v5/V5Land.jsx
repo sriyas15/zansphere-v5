@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import V5Loader from './V5Loader';
 import V5Header from './V5Header';
 import V5Hero from './V5Hero';
@@ -16,18 +16,28 @@ import V5Footer from './V5Footer';
 import V5Cursor from './V5Cursor';
 
 export default function V5Land() {
-    useEffect(() => {
+  useEffect(() => {
     const handleBeforeUnload = () => {
       sessionStorage.setItem('v5ScrollPos', window.scrollY);
     };
     window.addEventListener('beforeunload', handleBeforeUnload);
     
-    // Restore on mount
+    // Restore on mount instantly without smooth-scroll animation
     const savedScroll = sessionStorage.getItem('v5ScrollPos');
     if (savedScroll) {
+      const rootHtml = document.documentElement;
+      const originalScrollBehavior = rootHtml.style.scrollBehavior;
+      rootHtml.style.scrollBehavior = 'auto';
+
+      window.scrollTo({
+        top: parseInt(savedScroll, 10),
+        behavior: 'instant'
+      });
+
       setTimeout(() => {
-        window.scrollTo(0, parseInt(savedScroll, 10));
-      }, 200);
+        rootHtml.style.scrollBehavior = originalScrollBehavior;
+      }, 100);
+
       sessionStorage.removeItem('v5ScrollPos');
     }
     
@@ -46,8 +56,8 @@ export default function V5Land() {
   return (
     <div className="min-h-screen bg-[#fafafa]" style={{ fontFamily: "'Inter', sans-serif" }}>
       <Helmet>
-        <title>Zansphere – Precision Glass</title>
-        <meta name="description" content="Zansphere — V5 Final Variant" />
+        <title>Zansphere - Scalable Apps & Enterprise IT</title>
+        <meta name="description" content="Zansphere — Engineering scalable digital ecosystems, custom software development, cloud, AI, and enterprise solutions." />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />

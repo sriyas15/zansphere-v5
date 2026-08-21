@@ -31,7 +31,7 @@ export default function V5Enterprise() {
       title: "Real-time Sync",
       description: "Seamlessly sync with ERPs, CRMs, and cloud platforms, sharing data in real-time.",
       icon: Zap,
-      techs: ["Firebase", "Mongo DB"]
+      techs: ["Firebase", "MongoDB"]
     },
     {
       title: "Scalable Architecture",

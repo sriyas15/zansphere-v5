@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const techStack = [
-  'React', 'Node.js', 'AWS', 'Python', 'Docker', 'TypeScript', 'Firebase', 'Mongo DB'
+  'React', 'Node.js', 'AWS', 'Python', 'Docker', 'TypeScript', 'Firebase', 'MongoDB'
 ];
 
 export default function V5Tech() {
@@ -11,6 +11,7 @@ export default function V5Tech() {
   const getIconByName = (stackName) => {
     let sanitized = stackName.replace(/\s+/g, '-');
     if (stackName === 'Node.js') sanitized = 'Node-js';
+    if (stackName === 'MongoDB') sanitized = 'Mongo-DB';
     const match = Object.entries(icons).find(([path]) => path.includes(`${sanitized}.png`));
     return match ? match[1].default : null;
   };
