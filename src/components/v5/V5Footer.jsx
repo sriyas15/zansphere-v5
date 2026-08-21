@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Linkedin, Github } from 'lucide-react';
 import logo from '../../images/zanSphereLogo.png';
 
@@ -30,9 +31,27 @@ export default function V5Footer() {
           {/* Links Column 2 */}
           <div className="flex flex-col gap-4">
             <h4 className="text-xs font-bold text-gray-900 uppercase tracking-widest mb-2">Legal</h4>
-            <a href="/privacy" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Privacy Policy</a>
-            <a href="/terms" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Terms of Service</a>
-            <a href="/cookie" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Cookie Policy</a>
+            <Link 
+              to="/privacy" 
+              onClick={() => sessionStorage.setItem('v5ScrollPos', window.scrollY)} 
+              className="text-sm text-gray-500 hover:text-gray-900 transition-colors"
+            >
+              Privacy Policy
+            </Link>
+            <Link 
+              to="/terms" 
+              onClick={() => sessionStorage.setItem('v5ScrollPos', window.scrollY)} 
+              className="text-sm text-gray-500 hover:text-gray-900 transition-colors"
+            >
+              Terms of Service
+            </Link>
+            <Link 
+              to="/cookie" 
+              onClick={() => sessionStorage.setItem('v5ScrollPos', window.scrollY)} 
+              className="text-sm text-gray-500 hover:text-gray-900 transition-colors"
+            >
+              Cookie Policy
+            </Link>
           </div>
 
           {/* Services Column */}

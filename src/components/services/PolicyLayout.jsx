@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
@@ -6,6 +6,10 @@ import logo from '../../images/zanSphereLogo.svg'; // Adjusted path
 
 const PolicyLayout = ({ pageTitle, children }) => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, []);
 
   const handleBack = (e) => {
     e.preventDefault();
@@ -23,7 +27,7 @@ const PolicyLayout = ({ pageTitle, children }) => {
           <a href="/" onClick={handleBack}>
             <img
               src={logo}
-              alt="ZanSphere Logo"
+              alt="Zansphere Logo"
               className="w-[180px] h-[65px] object-cover cursor-pointer"
             />
           </a>
@@ -50,7 +54,7 @@ const PolicyLayout = ({ pageTitle, children }) => {
       {/* Footer - Simplified */}
       <footer className="bg-gray-900 py-8">
         <div className="container mx-auto px-4 text-center">
-          <p className="text-xs text-gray-400">&copy; {new Date().getFullYear()} ZanSphere Private Limited. All rights reserved.</p>
+          <p className="text-xs text-gray-400">&copy; {new Date().getFullYear()} Zansphere Private Limited. All rights reserved.</p>
         </div>
       </footer>
     </div>
